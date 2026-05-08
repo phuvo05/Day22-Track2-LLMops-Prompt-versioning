@@ -1,12 +1,12 @@
 ============================================================
   V1 vs V2 Comparison Table
 ============================================================
-  faithfulness                  : V1=0.9539  V2=0.8675  <- V1 *
-  answer_relevancy              : V1=0.8886  V2=0.9025  <- V2
-  context_recall                : V1=0.9600  V2=0.9400  <- V1
-  context_precision             : V1=0.9367  V2=0.9133  <- V1
+  faithfulness                  : V1=0.9515  V2=0.9556  <- V2 *
+  answer_relevancy              : V1=0.8895  V2=0.8849  <- V1
+  context_recall                : V1=0.9500  V2=0.9400  <- V1
+  context_precision             : V1=0.9233  V2=0.9300  <- V2
 
-  Target met: faithfulness = 0.9539
+  Target met: faithfulness = 0.9556
 
   Saved data/ragas_report.json
 
