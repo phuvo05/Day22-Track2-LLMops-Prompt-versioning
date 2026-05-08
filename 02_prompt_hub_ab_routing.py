@@ -127,21 +127,21 @@ def push_prompts_to_hub(client: Client) -> None:
         url = client.push_prompt(
             PROMPT_V1_NAME,
             object=PROMPT_V1,
-            description="V1 – concise 2-4 sentence answers"
+            description="V1 - concise 2-4 sentence answers"
         )
-        print(f"✅ Pushed V1 → {url}")
+        print(f"[OK] Pushed V1 -> {url}")
     except Exception as e:
-        print(f"⚠️ V1 push failed: {e}")
+        print(f"[WARNING] V1 push failed: {e}")
 
     try:
         url = client.push_prompt(
             PROMPT_V2_NAME,
             object=PROMPT_V2,
-            description="V2 – structured expert 3-5 sentence answers"
+            description="V2 - structured expert 3-5 sentence answers"
         )
-        print(f"✅ Pushed V2 → {url}")
+        print(f"[OK] Pushed V2 -> {url}")
     except Exception as e:
-        print(f"⚠️ V2 push failed: {e}")
+        print(f"[WARNING] V2 push failed: {e}")
 
 
 def pull_prompts_from_hub(client: Client) -> dict:
@@ -150,17 +150,17 @@ def pull_prompts_from_hub(client: Client) -> dict:
 
     try:
         prompts[PROMPT_V1_NAME] = client.pull_prompt(PROMPT_V1_NAME)
-        print(f"↓ Pulled '{PROMPT_V1_NAME}' from Hub")
+        print(f"[DOWN] Pulled '{PROMPT_V1_NAME}' from Hub")
     except Exception:
         prompts[PROMPT_V1_NAME] = PROMPT_V1
-        print(f"ℹ️ Using local fallback for '{PROMPT_V1_NAME}'")
+        print(f"[INFO] Using local fallback for '{PROMPT_V1_NAME}'")
 
     try:
         prompts[PROMPT_V2_NAME] = client.pull_prompt(PROMPT_V2_NAME)
-        print(f"↓ Pulled '{PROMPT_V2_NAME}' from Hub")
+        print(f"[DOWN] Pulled '{PROMPT_V2_NAME}' from Hub")
     except Exception:
         prompts[PROMPT_V2_NAME] = PROMPT_V2
-        print(f"ℹ️ Using local fallback for '{PROMPT_V2_NAME}'")
+        print(f"[INFO] Using local fallback for '{PROMPT_V2_NAME}'")
 
     return prompts
 
@@ -258,7 +258,7 @@ def main():
     print(f"  Prompt V2 (structured): {v2_count} queries")
     print(f"  Split ratio: {v1_count/len(SAMPLE_QUESTIONS)*100:.1f}% / {v2_count/len(SAMPLE_QUESTIONS)*100:.1f}%")
     print("=" * 60)
-    print(f"\n✅ {len(SAMPLE_QUESTIONS)} traces sent to LangSmith project '{os.environ['LANGCHAIN_PROJECT']}'")
+    print(f"\n[OK] {len(SAMPLE_QUESTIONS)} traces sent to LangSmith project '{os.environ['LANGCHAIN_PROJECT']}'")
     print("   Open https://smith.langchain.com to view traces.")
 
 

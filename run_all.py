@@ -30,6 +30,14 @@ SKIP_NOTES = {
 }
 
 
+def get_python_executable() -> str:
+    """Return the Python executable from the project venv if it exists."""
+    venv_python = Path(".venv/Scripts/python.exe")
+    if venv_python.exists():
+        return str(venv_python.resolve())
+    return sys.executable
+
+
 def run_step(step_num: int, name: str, script: str) -> bool:
     sep = "=" * 70
     print(f"\n{sep}")
@@ -41,10 +49,14 @@ def run_step(step_num: int, name: str, script: str) -> bool:
         print(f"ERROR: {script} not found. Make sure you are in the project root.")
         return False
 
+    python_exe = get_python_executable()
+
     try:
         result = subprocess.run(
-            [sys.executable, str(script_path)],
+            [python_exe, str(script_path)],
             check=True,
+            encoding="utf-8",
+            errors="replace",
         )
         return True
     except subprocess.CalledProcessError as e:
